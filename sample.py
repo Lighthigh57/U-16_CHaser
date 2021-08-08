@@ -18,22 +18,24 @@ get_ready() → 行動関数 → get_ready() → ... の順で必ず処理を行
 このときは [0, 2, 2, 0, 0, 3, 1, 0, 0] が返る．
 """
 def main():
-    value = [] # フィールド情報を保存するリスト
-    client = CHaser.Client() # サーバーと通信するためのインスタンス
-
+    value = []
+    client = CHaser.Client()
+    
     while(True):
-        value = client.get_ready() # サーバーに行動準備が完了したと伝える
-        for i in range(1,8,2):
-            if not value[i]==2 :
-                if i==1:
-                    client.walk_up
-                elif i==3 :
-                    client.walk_left
-                elif i==5 :
-                    client.walk_right
-                else:
-                    client.walk_down
-                break
+        value = client.get_ready()
+        value = client.search_left()
+
+        value = client.get_ready()
+        if value[7] != 2:
+            value = client.walk_down()
+        else:
+            value = client.put_up()
+
+        value = client.get_ready()
+        value = client.look_up()
+
+        value = client.get_ready()
+        value = client.put_right()
 
 
 """
