@@ -1,31 +1,14 @@
 import CHaser # 同じディレクトリに CHaser.py がある前提
-import random
 
-"""
-このファイルを直接実行したときに実行する関数．
-実行するまでの経緯はファイルの下部に記載．
-
-
-"""
 def main():
-    value = []
-    client = CHaser.Client()
+    value = [] # フィールド情報を保存するリスト
+    client = CHaser.Client() # サーバーと通信するためのインスタンス
 
     while(True):
-        value = client.get_ready()
-        value = client.search_left()
+        value = client.get_ready() # サーバーに行動準備が完了したと伝える
+        value = client.search_left() # サーバーに行動内容を伝える
 
-        number = random.randint(0, 3)
-        if number == 0:
-            client.walk_up()
-        elif number == 1:
-            client.walk_down()
-        elif number == 2:
-            client.walk_left()
-        elif number == 3:
-            client.walk_right()
-        """
-        value = client.get_ready()
+        value = client.get_ready() # 行動する前には必ず get_ready() する
         if value[7] != 2:
             value = client.walk_down()
         else:
@@ -36,9 +19,6 @@ def main():
 
         value = client.get_ready()
         value = client.put_right()
-
-        """
-        
 
 """
 python sample.py のようにこのファイルを直接実行すると，
