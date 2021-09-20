@@ -62,10 +62,9 @@ class Command:
             if dir == 5:
                 run.search_right()
                 pass
-        
         pass
-    def get_info(self, parameter_list):
+    def get_info(self):
         global run
 
-        return run.get_ready
+        return run.get_ready()
 
