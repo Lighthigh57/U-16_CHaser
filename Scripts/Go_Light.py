@@ -1,5 +1,6 @@
 import Command
 import random
+#CHaser　ユーザー名 = Shun
 
 ready_value = [] # フィールド情報を保存するリスト
 priority = [0,0,0,0,0,0,0,0,0] #
