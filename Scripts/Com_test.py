@@ -8,7 +8,6 @@ def main():
     """
     global runner
     while True:
-        runner.get_info()
         runner.move("walk",7)
 
 if __name__ == "__main__":
