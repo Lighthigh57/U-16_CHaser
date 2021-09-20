@@ -1,9 +1,10 @@
 import Command
+import random
 
 ready_value = [] # フィールド情報を保存するリスト
 priority = [0,0,0,0,0,0,0,0,0] #
 runner = None
-
+last = 0
 
 def main():
     global ready_value
@@ -43,26 +44,43 @@ def Checker():
     global ready_value
     global runner
     global priority
+    global last
 
     for i in range(0,9):
         if ready_value[i] == 3:
             if i%2==1:
                 priority[i] = 1
-        elif ready_value[i] == 1:
+        if ready_value[i] == 1:
             if i%2==0:
                 avoid_enemy(i)
             else:
                 runner.move("put",i)
                 break
-        elif ready_value[i] == 2:
+        if ready_value[i] == 2:
             priority[i] = -1
-            pass
     else:
-        max = 1
+        print(priority)
+        max = priority[1]#最大値
+        nowmax = [1]#最大値のある方向
         for i in range(3,8,2):
-            if priority[max] < priority[i]:
-                max = i
-        runner.move("walk",max)
+            if max < priority[i]:
+                max = priority[i]
+                nowmax = [i]
+            elif max == priority[i]:
+                nowmax += [i]
+            print(nowmax)
+            if len(nowmax) != 1:
+                if ((last == 1) and (7 in nowmax)):
+                    nowmax.remove(7)
+                if ((last == 3) and (5 in nowmax)):
+                    nowmax.remove(5)
+                if ((last == 5) and (3 in nowmax)):
+                    nowmax.remove(3)
+                if ((last == 7) and (1 in nowmax)):
+                    nowmax.remove(1)
+
+        runner.move("walk",nowmax[random.randint(0,len(nowmax) - 1)])
+        last = nowmax[random.randint(0,len(nowmax) - 1)]
     
     
     
