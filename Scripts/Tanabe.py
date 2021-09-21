@@ -70,6 +70,7 @@ def Checker():
             elif max == priority[i]:
                 nowmax += [i]
             print(nowmax)
+        else:
             if len(nowmax) != 1:
                 if ((last == 1) and (7 in nowmax)):
                     nowmax.remove(7)
@@ -79,9 +80,11 @@ def Checker():
                     nowmax.remove(3)
                 if ((last == 7) and (1 in nowmax)):
                     nowmax.remove(1)
-
-        runner.move("walk",nowmax[random.randint(0,len(nowmax) - 1)])
-        last = nowmax[random.randint(0,len(nowmax) - 1)]
+            if max == -1:
+                runner.move("look",1)
+            else:
+                runner.move("walk",nowmax[random.randint(0,len(nowmax) - 1)])
+            last = nowmax[random.randint(0,len(nowmax) - 1)]
     
     
     
