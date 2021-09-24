@@ -1,30 +1,31 @@
-import Command
+import CHaser
 import random
 #CHaser　ユーザー名 = Shun
 
 ready_value = [] # フィールド情報を保存するリスト
-result = []
-priority = []#
-mapdata = [[0]*15]*17
-infoOK = False
-runner = None
-last = 0
-centerx = 8
-centery = 9
+result = [] #コマンドで得たマップ情報
+priority = [] #優先度
+mapdata = [[0]*15]*17 #Map情報を保管
+infoOK = False #getready済みか
+run = None #コマンド実行者
+last = 0 #
+CENTER_X = 8 
+CENTER_Y = 9
+nowx = CENTER_X
+nowy = CENTER_Y
 
 
 def main():
     global ready_value
-    global runner
+    global run
     global priority
-    global nowy 
     global result
 
-    ready_value = runner.get_info()
+    ready_value = get_info()
     result = move("search",1)
     print(result)
     while True:
-        ready_value = runner.get_info()
+        ready_value = get_info()
         priority = [0]*9
         Checker()
 
@@ -49,7 +50,7 @@ def Checker():
     敵いたら潰します(笑)
     """
     global ready_value
-    global runner
+    global run
     global priority
     global last
 
@@ -96,10 +97,8 @@ def move(com,dir):
         各種行動を起こします。
         Get_info忘れないで！
         """
-        global runner
+        global run
         global infoOK
-
-        result = []
 
         if infoOK == False:
             get_info()
@@ -107,67 +106,55 @@ def move(com,dir):
 
         if com == "put":
             if dir == 1:
-                result = runner.put_up()
-                
+                result = run.put_up()
             if dir == 7:
-                result = runner.put_down()
-                
+                result = run.put_down()
             if dir == 3:
-                result = runner.put_left()
-                
+                result = run.put_left()
             if dir == 5:
-                result = runner.put_right()
-                
+                result = run.put_right()
+
         if com == "walk":
             if dir == 1:
-                result = runner.walk_up()
-                
+                result = run.walk_up()
             if dir == 7:
-                result = runner.walk_down()
-                
+                result = run.walk_down()
             if dir == 3:
-                result = runner.walk_left()
-                
+                result = run.walk_left()
             if dir == 5:
-                result = runner.walk_right()
-                
+                result = run.walk_right()
+
         if com == "look":
             if dir == 1:
-                result = runner.look_up()
-                
+                result = run.look_up()
             if dir == 7:
-                result = runner.look_down()
-                
+                result = run.look_down()
             if dir == 3:
-                result = runner.look_left()
-                
+                result = run.look_left()
             if dir == 5:
-                result = runner.look_right()
+                result = run.look_right()
                 
         if com == "search":
             if dir == 1:
-                result = runner.search_up()
-                
+                result = run.search_up()
             if dir == 7:
-                result = runner.search_down()
-                
+                result = run.search_down()
             if dir == 3:
-                result = runner.search_left()
-                
+                result = run.search_left()
             if dir == 5:
-                result = runner.search_right()
+                result = run.search_right()
         
         print(com+" "+str(dir))
         infoOK = False
 
         return result    
     
-def get_info(self):
-        global runner
+def get_info():
+        global run
         global infoOK
 
         infoOK = True
-        return runner.get_ready()    
+        return run.get_ready()    
 
 
 """
@@ -175,5 +162,5 @@ python sample.py のようにこのファイルを直接実行すると，
 __name__ は "__main__" となる．これを利用して main() を実行する．
 """
 if __name__ == "__main__":
-    runner = Command.Command()
+    run = CHaser.Client()
     main()
