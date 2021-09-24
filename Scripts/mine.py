@@ -19,7 +19,7 @@ def main():
             while check:
                 result = random.randint(0,3)
                 if ready_value[result] != 2:
-                    runner.move("walk",result*2+1)
+                    move("walk",result*2+1)
                     check = False
 
 

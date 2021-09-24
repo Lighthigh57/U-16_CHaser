@@ -19,64 +19,69 @@ class Command:
         """
         global run
         global infoOK
+
+        result = []
+
         if infoOK == False:
             self.get_info()
             print("Warning!:You didn't get_info().")
 
         if com == "put":
             if dir == 1:
-                run.put_up()
+                result = run.put_up()
                 
             if dir == 7:
-                run.put_down()
+                result = run.put_down()
                 
             if dir == 3:
-                run.put_left()
+                result = run.put_left()
                 
             if dir == 5:
-                run.put_right()
+                result = run.put_right()
                 
         if com == "walk":
             if dir == 1:
-                run.walk_up()
+                result = run.walk_up()
                 
             if dir == 7:
-                run.walk_down()
+                result = run.walk_down()
                 
             if dir == 3:
-                run.walk_left()
+                result = run.walk_left()
                 
             if dir == 5:
-                run.walk_right()
+                result = run.walk_right()
                 
         if com == "look":
             if dir == 1:
-                run.look_up()
+                result = run.look_up()
                 
             if dir == 7:
-                run.look_down()
+                result = run.look_down()
                 
             if dir == 3:
-                run.look_left()
+                result = run.look_left()
                 
             if dir == 5:
-                run.look_right()
+                result = run.look_right()
                 
         if com == "search":
             if dir == 1:
-                run.search_up()
+                result = run.search_up()
                 
             if dir == 7:
-                run.search_down()
+                result = run.search_down()
                 
             if dir == 3:
-                run.search_left()
+                result = run.search_left()
                 
             if dir == 5:
-                run.search_right()
+                result = run.search_right()
         
         print(com+" "+str(dir))
         infoOK = False
+
+        return result
     
                 
         

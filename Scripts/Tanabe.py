@@ -80,7 +80,7 @@ def Checker():
                     nowmax.remove(3)
                 if ((last == 7) and (1 in nowmax)):
                     nowmax.remove(1)
-            if max == -1:
+            if max == -1:                                
                 runner.move("look",1)
             else:
                 runner.move("walk",nowmax[random.randint(0,len(nowmax) - 1)])
