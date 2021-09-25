@@ -1,12 +1,11 @@
 import CHaser
 import random
-#CHaser　ユーザー名 = Shun
 
-ready_value = [] # フィールド情報を保存するリスト
+ready_Value = [] # フィールド情報を保存するリスト
 result = [] #コマンドで得たマップ情報
 priority = [] #優先度
-mapdata = [[0]*15]*17 #Map情報を保管
-infoOK = False #getready済みか
+map_Data = [[0]*15]*17 #Map情報を保管
+ready_OK = False #getready済みか
 run = None #コマンド実行者
 last = 0 #
 CENTER_X = 8 
@@ -16,16 +15,17 @@ nowy = CENTER_Y
 
 
 def main():
-    global ready_value
+    global ready_Value
     global run
     global priority
     global result
 
-    ready_value = get_info()
+    ready_Value = get_info()
+
     result = move("search",1)
     print(result)
     while True:
-        ready_value = get_info()
+        ready_Value = get_info()
         priority = [0]*9
         Checker()
 
@@ -49,22 +49,22 @@ def Checker():
     """
     敵いたら潰します(笑)
     """
-    global ready_value
+    global ready_Value
     global run
     global priority
     global last
 
     for i in range(0,9):
-        if ready_value[i] == 3:
+        if ready_Value[i] == 3:
             if i%2==1:
                 priority[i] = 1
-        if ready_value[i] == 1:
+        if ready_Value[i] == 1:
             if i%2==0:
                 avoid_enemy(i)
             else:
                 move("put",i)
                 break
-        if ready_value[i] == 2:
+        if ready_Value[i] == 2:
             priority[i] = -1
     else:
         #print(priority)
@@ -98,9 +98,9 @@ def move(com,dir):
         Get_info忘れないで！
         """
         global run
-        global infoOK
+        global ready_OK
 
-        if infoOK == False:
+        if ready_OK == False:
             get_info()
             print("Warning!:You didn't get_info().")
 
@@ -145,22 +145,34 @@ def move(com,dir):
                 result = run.search_right()
         
         print(com+" "+str(dir))
-        infoOK = False
+        ready_OK = False
 
         return result    
     
 def get_info():
-        global run
-        global infoOK
+    """Get_readyをします。"""
+    global run
+    global ready_OK
 
-        infoOK = True
-        return run.get_ready()    
+    ready_OK = True
+    return run.get_ready()    
+
+def move_map(dir):
+    """Mapの現在地の移動"""
+    global map_Data
+    
 
 
-"""
-python sample.py のようにこのファイルを直接実行すると，
-__name__ は "__main__" となる．これを利用して main() を実行する．
-"""
+    pass
+
+def set_map():
+    """Map更新"""
+    global map_Data
+
+    for i in range(nowy-1,nowy+2):
+        for j in range(nowx-1,nowx+2):
+            pass
+    
 if __name__ == "__main__":
     run = CHaser.Client()
     main()
