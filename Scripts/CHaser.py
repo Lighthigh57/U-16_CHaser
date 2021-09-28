@@ -5,7 +5,7 @@ import os
 class Client:
     def __init__(self):
         self.port = input("ポート番号を入力してください → ")
-        self.name = input("ユーザー名を入力してください → ")
+        self.name = "Shun"
         self.host = input("サーバーのIPアドレスを入力してください → ")
 
         if not self.__ip_judge(self.host):
@@ -115,4 +115,3 @@ class Client:
 
     def put_down(self):
         return self.__order("pd")
-    
