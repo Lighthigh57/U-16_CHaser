@@ -66,7 +66,6 @@ def Checker(last):
         if ready_Value[i] == 2:
             priority[i] = -1
     else:
-        # print(priority)
         max = priority[1]  # 最大値
         nowmax = [1]  # 最大値のある方向
         for i in range(3, 8, 2):
@@ -158,27 +157,23 @@ def get_info():
     return run.get_ready()
 
 def move_map(dir):
-    """Mapの現在地の移動"""
+    """Mapの現在地の移動
     global map_Data
     if dir == 1:
-        map_Data.append([0]*9)
-        map_Data.pop(0)
+        map_Data = map_Data[1:]+[[0]*5]
     elif dir == 7:
-        map_Data.insert(0,[0]*9)
-        map_Data.pop(len(map_Data)-1)
+        map_Data = [[0]*9] + map_Data[:-1]
     else:
         map_Data = [list(x) for x in zip(*map_Data)]
         if dir == 3:
-            map_Data.append([0]*9)
-            map_Data.pop(0)
+            map_Data = map_Data[1:]+[[0]*5]
         else:
-            map_Data.insert(0,[0]*9)
-            map_Data.pop(len(map_Data)-1)
+            map_Data = [[0]*9] + map_Data[:-1]
         map_Data = [list(x) for x in zip(*map_Data)]
-    print(map_Data)
+    print(map_Data)"""
 
 def set_map(get):
-    """Map更新"""
+    """Map更新
     global map_Data
 
     for i in range(-1, 2):
@@ -189,6 +184,7 @@ def set_map(get):
                 d = 1
             map_Data[nowy+i, nowx+j] = d
     print(map_Data)
+    """
 
 if __name__ == "__main__":
     run = CHaser.Client()
