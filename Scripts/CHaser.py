@@ -115,4 +115,3 @@ class Client:
 
     def put_down(self):
         return self.__order("pd")
-    
