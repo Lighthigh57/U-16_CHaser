@@ -20,10 +20,7 @@ def main():
     global run
     global priority
 
-    ready_Value = get_info()
-    result = move("search", 1)
     last = 0
-    print(result)
     while True:
         ready_Value = get_info()
         priority = [0]*9
