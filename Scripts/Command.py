@@ -7,9 +7,10 @@ class Command():
     run = None
     ready_OK = False
 
-    def __init__(self) -> None:
+    def __init__(self):
         global run
         run = CHaser.Client()
+        """set instance"""
 
     def move(self,com, dir):
         """
@@ -19,9 +20,9 @@ class Command():
         global run
         global ready_OK
 
-        if ready_OK == False:
+        if ready_OK == False: #if didn't get_ready()
             self.get_ready()
-            print("Warning!:You didn't get_info().")
+            print("Warning!:You didn't get_ready().")
 
         if com == "put":
             if dir == 1:
@@ -69,7 +70,7 @@ class Command():
         return result
 
     def get_ready(self):
-        """Get_readyをします。"""
+        """Lunch get_ready and return map."""
         global run
         global ready_OK
 
