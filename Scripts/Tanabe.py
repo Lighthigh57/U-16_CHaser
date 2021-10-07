@@ -91,5 +91,5 @@ def Checker(last,ready_Value) -> int:
     return goto
 
 if __name__ == "__main__":
-    command = Command.Command()
+    command = Command.Command() #Set Command instance
     main()
