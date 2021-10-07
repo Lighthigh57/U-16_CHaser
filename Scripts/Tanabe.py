@@ -1,13 +1,10 @@
 import random
-
-import CHaser
+import Command
 
 #PlayerName = Light
 
-ready_Value = []
 priority = []
 map_Data = [[0]*15]*17  # save map [x][y]
-ready_OK = False  # getready?
 run = None  # instance of CHaser cliant
 CENTER_X = 8  # Center in Map_X
 CENTER_Y = 9  # Center in Map_Y
@@ -17,15 +14,13 @@ last = 0
 
 
 def main():
-    global ready_Value
     global run
     global priority
 
     last = 0
     while True:
-        ready_Value = get_info()
         priority = [0]*9
-        last = Checker(last)
+        last = Checker(last,command.get_ready())
 
 def solve_diagonal(target,com):
     """
@@ -50,15 +45,13 @@ def solve_diagonal(target,com):
         priority[x] += 1
         priority[y] += 1
 
-def Checker(last):
+def Checker(last,ready_Value):
     """
     敵いたら潰します(笑)
     """
-    global ready_Value
     global run
     global priority
     
-
     for i in range(0, 9):
         if ready_Value[i] == 3:
             if i % 2 == 1:
@@ -69,7 +62,7 @@ def Checker(last):
             if i % 2 == 0:
                 solve_diagonal(i,"avoid")
             else:
-                move("put", i)
+                command.move("put", i)
                 break
         if ready_Value[i] == 2:
             priority[i] = -1
@@ -93,77 +86,14 @@ def Checker(last):
         elif ((last == 7) and (1 in nowmax)):
             nowmax.remove(1)
     if max == -1:
-        move("look", 1)
+        command.move("look", 1)
         return 0
     else:
         goto = nowmax[random.randint(0, len(nowmax) - 1)]
-        move("walk", goto)
+        command.move("walk", goto)
     return goto
 
-def move(com, dir):
-    """
-    各種行動を起こします。
-    Get_info忘れないで！
-    """
-    global run
-    global ready_OK
-
-    if ready_OK == False:
-        get_info()
-        print("Warning!:You didn't get_info().")
-
-    if com == "put":
-        if dir == 1:
-            result = run.put_up()
-        if dir == 7:
-            result = run.put_down()
-        if dir == 3:
-            result = run.put_left()
-        if dir == 5:
-            result = run.put_right()
-
-    if com == "walk":
-        if dir == 1:
-            result = run.walk_up()
-        if dir == 7:
-            result = run.walk_down()
-        if dir == 3:
-            result = run.walk_left()
-        if dir == 5:
-            result = run.walk_right()
-
-    if com == "look":
-        if dir == 1:
-            result = run.look_up()
-        if dir == 7:
-            result = run.look_down()
-        if dir == 3:
-            result = run.look_left()
-        if dir == 5:
-            result = run.look_right()
-
-    if com == "search":
-        if dir == 1:
-            result = run.search_up()
-        if dir == 7:
-            result = run.search_down()
-        if dir == 3:
-            result = run.search_left()
-        if dir == 5:
-            result = run.search_right()
-
-    print(com+" "+str(dir))
-    ready_OK = False
-
-    return result
-
-def get_info():
-    """Get_readyをします。"""
-    global run
-    global ready_OK
-
-    ready_OK = True
-    return run.get_ready()
+#-----Didn't use-----
 
 def move_map(dir):
     """Mapの現在地の移動"""
@@ -195,5 +125,5 @@ def set_map(get):
     print(map_Data)
     
 if __name__ == "__main__":
-    run = CHaser.Client()
+    command = Command.Command()
     main()
