@@ -94,36 +94,6 @@ def Checker(last,ready_Value):
     return goto
 
 #-----Didn't use-----
-
-def move_map(dir):
-    """Mapの現在地の移動"""
-    global map_Data
-    if dir == 1:
-        map_Data = map_Data[1:]+[[0]*5]
-    elif dir == 7:
-        map_Data = [[0]*9] + map_Data[:-1]
-    else:
-        map_Data = [list(x) for x in zip(*map_Data)]
-        if dir == 3:
-            map_Data = map_Data[1:]+[[0]*5]
-        else:
-            map_Data = [[0]*9] + map_Data[:-1]
-        map_Data = [list(x) for x in zip(*map_Data)]
-    print(map_Data)
-
-def set_map(get):
-    """Map更新"""
-    global map_Data
-
-    for i in range(-1, 2):
-        for j in range(-1, 2):
-            if get[(i+1)*3+(j+1)] == 2:
-                d = 2
-            else:
-                d = 1
-            map_Data[nowy+i, nowx+j] = d
-    print(map_Data)
-    
 if __name__ == "__main__":
     command = Command.Command()
     main()
