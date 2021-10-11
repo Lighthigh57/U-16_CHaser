@@ -12,6 +12,8 @@ run = None
 last = 0
 """last direction"""
 
+temp = 0
+
 
 def main():
     global run
@@ -47,20 +49,23 @@ def Checker(last,ready_Value) -> int:
     global run
     global priority
     
-    for i in range(0, 9):
+    for i in range(0, 9):#Safe Command
         if ready_Value[i] == 3: #Can I get now?
             if i % 2 == 1:
-                priority[i] += 2
+                priority[i] += 1
             else:
                 solve_diagonal(i,"get")
-        if ready_Value[i] == 1: #Can I put there now?
-            if i % 2 == 0:
-                solve_diagonal(i,"avoid")
-            else:
-                command.move("put", i)
-                break
-        if ready_Value[i] == 2: #There is a block?
-            priority[i] = -1
+        
+    else:#Danger Command
+        for i in range(0,9):
+            if ready_Value[i] == 1: #Can I put there now?
+                if i % 2 == 1:
+                    solve_diagonal(i,"avoid")
+                else:
+                    command.move("put", i)
+                    break
+            if ready_Value[i] == 2: #There is a block?
+                priority[i] = -1
     
     max = priority[1]  # maximum value
     nowmax = [1]  # direction index who it has maximum
@@ -91,5 +96,12 @@ def Checker(last,ready_Value) -> int:
     return goto
 
 if __name__ == "__main__":
+    while(True):
+        temp = int(input("please tell me hot or cool... (cool->0 / hot->1) :"))
+        if temp == 0 or temp == 1:
+            break
+        else:
+            print("you have to enter 0 or 1!")
+
     command = Command.Command() #Set Command instance
     main()
