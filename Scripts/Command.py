@@ -20,6 +20,8 @@ class Command():
         global run
         global ready_OK
 
+        result = [0]*9
+
         if ready_OK == False: #if didn't get_ready()
             self.get_ready()
             print("Warning!:You didn't get_ready().")
