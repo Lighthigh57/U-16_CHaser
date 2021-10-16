@@ -12,10 +12,22 @@ run = None
 last = 0
 """last direction"""
 
+side = 0
+"""My Cliant's side"""
+
+
 def main():
     global run
     global priority
 
+    max = 0
+    if side == 0:
+        value = run.move("search",3)
+        for i in range(len(value)):
+            if value[i] != 2:
+                max = i
+    else:
+        pass
     last = 0
     while True:
         priority = [0]*9
@@ -93,6 +105,12 @@ def Checker(last,ready_Value) -> int:
     return goto
 
 if __name__ == "__main__":
+    while(True):
+        side = int(input("please tell me hot or cool... (cool->0 / hot->1) :"))
+        if side == 0 or side == 1:
+            break
+        else:
+            print("you have to enter 0 or 1!")
 
     run = Command.Command() #Set Command instance
     main()
