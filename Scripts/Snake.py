@@ -12,38 +12,38 @@ run = None
 last = 0
 """last direction"""
 
-side = 0
-"""My Cliant's side"""
-
-map = None
-"""Map on firld"""
-
-went_map = None
-
-
 def main():
     global run
     global priority
 
-    max = 0
-
-    if side == 0:
-        value = run.move("search",3)
-    else:
-        value = run.move("search",5)
-
-    for i in range(len(value)):
-            if value[i] != 2:
-                max = i
-    
-    if side == 0:
-        15-()
-    else:
-        value = run.move("search",5)
     last = 0
     while True:
+        ready = run.get_ready()
+        goto = []
+        for i in range(3, 8, 2): 
+            if ready[i] == 3:
+                goto += i
+        max = 0
+        maxdir = 0
+        for i in goto:
+            check = run.move("search",i)
+            item = 0
+            for j in check:
+                if j == 3:
+                    item += 1
+            if max > item:
+                max = item
+                maxdir = i
+        straight(maxdir)
+
         priority = [0]*9
         last = Checker(last,run.get_ready())
+
+def straight(dir):
+    """
+    諸突猛進　気を配りながら
+    """
+    pass
 
 def solve_diagonal(target,com):
     """斜めに物が見えた時の処理"""
@@ -117,12 +117,6 @@ def Checker(last,ready_Value) -> int:
     return goto
 
 if __name__ == "__main__":
-    while(True):
-        side = int(input("please tell me hot or cool... (cool->0 / hot->1) :"))
-        if side == 0 or side == 1:
-            break
-        else:
-            print("you have to enter 0 or 1!")
 
     run = Command.Command() #Set Command instance
     main()
