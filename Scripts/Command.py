@@ -1,4 +1,5 @@
 import CHaser
+from Scripts.Make_Map import Make_map
 
 class Command():
     """
@@ -6,10 +7,14 @@ class Command():
     """
     run = None
     ready_OK = False
+    mapcont = None
 
     def __init__(self):
         global run
+        global mapcont
+
         run = CHaser.Client()
+        mapcont = Make_map()
         """set instance"""
 
     def move(self,com, dir):
@@ -77,4 +82,6 @@ class Command():
         global ready_OK
 
         ready_OK = True
-        return run.get_ready()
+        result = run.get_ready()
+        mapcont.UpData("G",0,result)
+        return result

@@ -1,5 +1,6 @@
 import random
 import Command
+from Scripts.Make_Map import Make_map
 
 #PlayerName = Light
 
@@ -27,23 +28,13 @@ def main():
 
     max = 0
 
-    if side == 0:
-        value = run.move("search",3)
-    else:
-        value = run.move("search",5)
-
-    for i in range(len(value)):
-            if value[i] != 2:
-                max = i
     
-    if side == 0:
-        15-()
-    else:
-        value = run.move("search",5)
     last = 0
     while True:
         priority = [0]*9
         last = Checker(last,run.get_ready())
+        print(Make_map.MAP)
+        
 
 def solve_diagonal(target,com):
     """斜めに物が見えた時の処理"""

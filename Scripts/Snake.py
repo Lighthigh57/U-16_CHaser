@@ -34,16 +34,18 @@ def main():
             if max > item:
                 max = item
                 maxdir = i
-        straight(maxdir)
+        straight(maxdir,max)
 
         priority = [0]*9
         last = Checker(last,run.get_ready())
 
-def straight(dir):
+def straight(dir,rute):
     """
     諸突猛進　気を配りながら
     """
-    pass
+    for i in range(rute):
+        run.get_ready()
+        
 
 def solve_diagonal(target,com):
     """斜めに物が見えた時の処理"""
