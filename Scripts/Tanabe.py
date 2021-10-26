@@ -1,8 +1,6 @@
 import random
 import Command
 
-#PlayerName = Light
-
 priority = [] 
 """priority = 優先度"""
 

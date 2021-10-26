@@ -1,5 +1,5 @@
 import CHaser
-from Scripts.Make_Map import Make_map
+import Make_Map
 
 class Command():
     """
@@ -14,7 +14,7 @@ class Command():
         global mapcont
 
         run = CHaser.Client()
-        mapcont = Make_map()
+        mapcont = Make_Map.Make_map()
         """set instance"""
 
     def move(self,com, dir):
@@ -44,12 +44,16 @@ class Command():
         if com == "walk":
             if dir == 1:
                 result = run.walk_up()
+                mapcont.mapY -= 1
             if dir == 7:
                 result = run.walk_down()
+                mapcont.mapY += 1
             if dir == 3:
                 result = run.walk_left()
+                mapcont.mapX -= 1
             if dir == 5:
                 result = run.walk_right()
+                mapcont.mapX += 1
 
         if com == "look":
             if dir == 1:
@@ -84,4 +88,11 @@ class Command():
         ready_OK = True
         result = run.get_ready()
         mapcont.UpData("G",0,result)
+        for list in mapcont.Map:
+            print(list)
         return result
+    
+    def get_map(self):
+        """MAPはこちらからどうぞ"""
+        return mapcont.Map
+        

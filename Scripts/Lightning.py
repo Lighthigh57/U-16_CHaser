@@ -1,6 +1,5 @@
 import random
 import Command
-from Scripts.Make_Map import Make_map
 
 #PlayerName = Light
 
@@ -33,7 +32,7 @@ def main():
     while True:
         priority = [0]*9
         last = Checker(last,run.get_ready())
-        print(Make_map.MAP)
+        print(run.get_map())
         
 
 def solve_diagonal(target,com):
