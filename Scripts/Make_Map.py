@@ -29,17 +29,13 @@ class Make_map():
             print("GetReadyのデータで更新")
             if self.mapX - 1 < 0:
                 print("Xのデータを修正")
-                y = 0
-                for i in range(35):
+                for y in range(35):
                     for i in range(-1 * self.mapX + 1):
                         self.Map[y].insert(0, "")
-                    y += 1
 
-                y = 0
-                for i in range(35):
+                for y in range(35):
                     for i in range(-1 * self.mapX + 1):
                         del self.Map[y][33]
-                    y += 1
                 self.mapX = -1 * self.mapX + 1
 
             if self.mapY - 1 < 0:
@@ -51,14 +47,9 @@ class Make_map():
                 self.mapY = -1 * self.mapY + 1
 
             print("get_ready()で更新中...")
-            x = self.mapX - 1
-            y = self.mapY - 1
-            for i in range(3):
-                for j in range(3):
-                    self.Map[y][x] = get[i*j]
-                    x += 1
-                x = self.mapX - 1
-                y += 1
+            for y in range(self.mapY - 1,self.mapY + 2):
+                for x in range(self.mapX - 1,self.mapX + 2):
+                    self.Map[y][x] = get[x*i]
 
         elif str(com) == "S":
             print("Searchのデータで更新")
@@ -73,19 +64,13 @@ class Make_map():
                     self.mapY = -1 * self.mapY + 9
 
                 print("Searchの上の情報で更新中...")
-                x = self.mapX
-                y = self.mapY - 1
                 for i in range(9):
-                    self.Map[y][x] = get[i]
-                    y -= 1
+                    self.Map[self.mapY-1-i][self.mapX] = get[i]
 
             if dir == "D":
                 print("Searchの下の情報で更新中...")
-                x = self.mapX
-                y = self.mapY + 1
                 for i in range(9):
-                    self.Map[y][x] = get[i]
-                    y += 1
+                    self.Map[self.mapY + 1+i][self.mapX] = get[i]
                 
             if dir == "L":
                 if self.mapX - 9 < 0:
