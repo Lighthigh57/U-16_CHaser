@@ -32,7 +32,6 @@ def main():
     while True:
         priority = [0]*9
         last = Checker(last,run.get_ready())
-        print(run.get_map())
         
 
 def solve_diagonal(target,com):
@@ -103,6 +102,7 @@ def Checker(last,ready_Value) -> int:
         return 0
     else:
         goto = nowmax[random.randint(0, len(nowmax) - 1)]
+       
         run.move("walk", goto)
     return goto
 

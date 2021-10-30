@@ -8,7 +8,7 @@ class Make_map():
 
     def __init__(self) -> None:
         
-        self.Map = [[" " for i in range(35)] for j in range(35)]
+        self.Map = [["" for i in range(35)] for j in range(35)]
         """保存したマップ"""
 
         self.mapX = 0
