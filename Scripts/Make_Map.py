@@ -8,7 +8,7 @@ class Make_map():
 
     def __init__(self) -> None:
         
-        self.Map = [[9 for i in range(20)] for j in range(20)]
+        self.map = [[9 for i in range(20)] for j in range(20)]
         """保存したマップ"""
 
         self.mapX = 0
@@ -29,25 +29,25 @@ class Make_map():
                 print("Xのデータを修正")
                 for y in range(20):
                     for i in range(-1 * self.mapX + 1):
-                        self.Map[y].insert(0, 9)
+                        self.map[y].insert(0, 9)
 
                 for y in range(20):
                     for i in range(-1 * self.mapX + 1):
-                        del self.Map[y][18]
+                        del self.map[y][18]
                 self.mapX = -1 * self.mapX + 1
 
             if self.mapY - 1 < 0:
                 print("Yのデータを修正")
                 for i in range(-1 * self.mapY + 1):
-                    self.Map.insert(0, [9 for i in range(20)])
+                    self.map.insert(0, [9 for i in range(20)])
                 for i in range(-1 * self.mapY + 1):
-                    del self.Map[20]
+                    del self.map[20]
                 self.mapY = -1 * self.mapY + 1
 
             print("get_ready()で更新中...")
             for i in range(-1,2):
                 for j in range(-1,2):
-                    self.Map[self.mapY+i][self.mapX+j] = get[i*3+j]
+                    self.map[self.mapY+i][self.mapX+j] = get[i*3+j]
 
         elif str(com) == "S":
             print("Searchのデータで更新")
@@ -55,44 +55,44 @@ class Make_map():
                 if self.mapY - 9 < 0:
                     print("Yのデータを修正")
                     for i in range(-1 * self.mapY + 9):
-                        self.Map.insert(0, [9 for j in range(20)])
+                        self.map.insert(0, [9 for j in range(20)])
 
                     for i in range(-1 * self.mapY + 9):
-                        del self.Map[20]
+                        del self.map[20]
                     self.mapY = -1 * self.mapY + 9
 
                 print("Searchの上の情報で更新中...")
                 for i in range(9):
-                    self.Map[self.mapY-1-i][self.mapX] = get[i]
+                    self.map[self.mapY-1-i][self.mapX] = get[i]
 
             if dir == "D":
                 print("Searchの下の情報で更新中...")
                 for i in range(9):
-                    self.Map[self.mapY + 1+i][self.mapX] = get[i]
+                    self.map[self.mapY + 1+i][self.mapX] = get[i]
                 
             if dir == "L":
                 if self.mapX - 9 < 0:
                     print("Xのデータを修正")
                     for y in range(20):
                         for j in range(-1 * self.mapX + 9):
-                            self.Map[y].insert(0, 9)
+                            self.map[y].insert(0, 9)
 
                     for y in range(20):
                         for j in range(-1 * self.mapX + 9):
-                            del self.Map[y][18]
+                            del self.map[y][18]
                     self.mapX = -1 * self.mapX + 9
 
                 print("Searchの左の情報で更新中...")
                 x = self.mapX - 1
                 y = self.mapY
                 for i in range(9):
-                    self.Map[y][x] = get[i]
+                    self.map[y][x] = get[i]
                     x -= 1
         
             if dir == "R":
                 print("Searchの右の情報で更新中...")
                 for i in range(9):
-                    self.Map[self.mapY][self.mapX+1+i] = get[i]
+                    self.map[self.mapY][self.mapX+1+i] = get[i]
             
         elif str(com) == "L":
             print("Lookのデータで更新")
@@ -101,19 +101,19 @@ class Make_map():
                     print("Xのデータを修正")
                     for y in range(20):
                         for i in range(-1 * self.mapX + 3):
-                            self.Map[y].insert(0, 9)
+                            self.map[y].insert(0, 9)
 
                     for y in range(20):
                         for i in range(-1 * self.mapX + 3):
-                            del self.Map[y][18]
+                            del self.map[y][18]
                     self.mapX = -1 * self.mapX + 3
                 
                 if self.mapY - 1 > 0:
                     for i in range(-1 * self.mapY + 1):
-                        self.Map.insert(0, [9 for i in range(20)])
+                        self.map.insert(0, [9 for i in range(20)])
 
                     for i in range(-1 * self.mapY + 1):
-                        del self.Map[20]
+                        del self.map[20]
                     self.mapY = -1 * self.mapY + 1
 
                 print("Lookの上のデータで更新中...")
@@ -121,7 +121,7 @@ class Make_map():
                 for i in range(3):
                     x = self.mapX - 1
                     for j in range(3):
-                        self.Map[y][x] = get[i*j]
+                        self.map[y][x] = get[i*j]
                         x += 1
                     y += 1
 
@@ -131,7 +131,7 @@ class Make_map():
                 for i in range(3):
                     x = self.mapX - 1
                     for j in range(3):
-                        self.Map[y][x] = get[i*j]
+                        self.map[y][x] = get[i*j]
                         x += 1
                     y += 1
             
@@ -140,21 +140,21 @@ class Make_map():
                     print("Xのデータを修正")
                     for y in range(20):
                         for i in range(-1 * self.mapX + 3):
-                            self.Map[y].insert(0, 9)
+                            self.map[y].insert(0, 9)
     
 
                     for y in range(20):
                         for i in range(-1 * self.mapX + 3):
-                            del self.Map[y][18]
+                            del self.map[y][18]
     
                     self.mapX = -1 * self.mapX + 3
 
                 if self.mapY - 1 > 0:
                     for i in range(-1 * self.mapY + 1):
-                        self.Map.insert(0, [9 for i in range(20)])
+                        self.map.insert(0, [9 for i in range(20)])
 
                     for i in range(-1 * self.mapY + 1):
-                        del self.Map[20]
+                        del self.map[20]
                     self.mapY = -1 * self.mapY + 1
 
                 print("Lookの左のデータで更新中...")
@@ -162,7 +162,7 @@ class Make_map():
                 for i in range(3):
                     x = self.mapX - 3
                     for j in range(3):
-                        self.Map[y][x] = get[i*j]
+                        self.map[y][x] = get[i*j]
                         x += 1
                     y += 1
 
@@ -172,7 +172,7 @@ class Make_map():
                 y = self.mapY - 1
                 for i in range(3):
                     for j in range(3):
-                        self.Map[y][x] = get[i*j]
+                        self.map[y][x] = get[i*j]
                         x += 1
                     x = self.mapX - 3
                     y += 1

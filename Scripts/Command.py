@@ -88,11 +88,11 @@ class Command():
         ready_OK = True
         result = run.get_ready()
         mapcont.UpData("G",0,result)
-        for list in mapcont.Map:
+        for list in mapcont.map:
             print(list)
         return result
     
     def get_map(self):
         """MAPはこちらからどうぞ"""
-        return mapcont.Map
+        return mapcont.map
         
