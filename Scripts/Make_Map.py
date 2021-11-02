@@ -8,7 +8,7 @@ class Make_map():
 
     def __init__(self) -> None:
         
-        self.Map = [["" for i in range(35)] for j in range(35)]
+        self.Map = [[9 for i in range(20)] for j in range(20)]
         """保存したマップ"""
 
         self.mapX = 0
@@ -20,8 +20,6 @@ class Make_map():
 
     def UpData(self, com, dir, get):
 
-        x = 0
-        y = 0
 
         print("UpdateData実行")
 
@@ -29,27 +27,27 @@ class Make_map():
             print("GetReadyのデータで更新")
             if self.mapX - 1 < 0:
                 print("Xのデータを修正")
-                for y in range(35):
+                for y in range(20):
                     for i in range(-1 * self.mapX + 1):
-                        self.Map[y].insert(0, "")
+                        self.Map[y].insert(0, 9)
 
-                for y in range(35):
+                for y in range(20):
                     for i in range(-1 * self.mapX + 1):
-                        del self.Map[y][33]
+                        del self.Map[y][18]
                 self.mapX = -1 * self.mapX + 1
 
             if self.mapY - 1 < 0:
                 print("Yのデータを修正")
                 for i in range(-1 * self.mapY + 1):
-                    self.Map.insert(0, ["" for i in range(35)])
+                    self.Map.insert(0, [9 for i in range(20)])
                 for i in range(-1 * self.mapY + 1):
-                    del self.Map[35]
+                    del self.Map[20]
                 self.mapY = -1 * self.mapY + 1
 
             print("get_ready()で更新中...")
-            for y in range(self.mapY - 1,self.mapY + 2):
-                for x in range(self.mapX - 1,self.mapX + 2):
-                    self.Map[y][x] = get[x*i]
+            for i in range(-1,2):
+                for j in range(-1,2):
+                    self.Map[self.mapY+i][self.mapX+j] = get[i*3+j]
 
         elif str(com) == "S":
             print("Searchのデータで更新")
@@ -57,10 +55,10 @@ class Make_map():
                 if self.mapY - 9 < 0:
                     print("Yのデータを修正")
                     for i in range(-1 * self.mapY + 9):
-                        self.Map.insert(0, ["" for i in range(35)])
+                        self.Map.insert(0, [9 for j in range(20)])
 
                     for i in range(-1 * self.mapY + 9):
-                        del self.Map[35]
+                        del self.Map[20]
                     self.mapY = -1 * self.mapY + 9
 
                 print("Searchの上の情報で更新中...")
@@ -75,17 +73,13 @@ class Make_map():
             if dir == "L":
                 if self.mapX - 9 < 0:
                     print("Xのデータを修正")
-                    y = 0
-                    for i in range(35):
+                    for y in range(20):
                         for j in range(-1 * self.mapX + 9):
-                            self.Map[y].insert(0, "")
-                        y += 1
+                            self.Map[y].insert(0, 9)
 
-                    y = 0
-                    for i in range(35):
+                    for y in range(20):
                         for j in range(-1 * self.mapX + 9):
-                            del self.Map[y][33]
-                        y += 1
+                            del self.Map[y][18]
                     self.mapX = -1 * self.mapX + 9
 
                 print("Searchの左の情報で更新中...")
@@ -97,36 +91,29 @@ class Make_map():
         
             if dir == "R":
                 print("Searchの右の情報で更新中...")
-                x = self.mapX + 1
-                y = self.mapY
                 for i in range(9):
-                    self.Map[y][x] = get[i]
-                    x += 1
+                    self.Map[self.mapY][self.mapX+1+i] = get[i]
             
         elif str(com) == "L":
             print("Lookのデータで更新")
             if dir == "U":
                 if self.mapX - 3 > 0:
                     print("Xのデータを修正")
-                    y = 0
-                    for i in range(35):
+                    for y in range(20):
                         for i in range(-1 * self.mapX + 3):
-                            self.Map[y].insert(0, "")
-                        y += 1
+                            self.Map[y].insert(0, 9)
 
-                    y = 0
-                    for i in range(35):
+                    for y in range(20):
                         for i in range(-1 * self.mapX + 3):
-                            del self.Map[y][33]
-                        y += 1
+                            del self.Map[y][18]
                     self.mapX = -1 * self.mapX + 3
                 
                 if self.mapY - 1 > 0:
                     for i in range(-1 * self.mapY + 1):
-                        self.Map.insert(0, ["" for i in range(35)])
+                        self.Map.insert(0, [9 for i in range(20)])
 
                     for i in range(-1 * self.mapY + 1):
-                        del self.Map[35]
+                        del self.Map[20]
                     self.mapY = -1 * self.mapY + 1
 
                 print("Lookの上のデータで更新中...")
@@ -151,25 +138,23 @@ class Make_map():
             if dir == "L":
                 if self.mapX - 3 > 0:
                     print("Xのデータを修正")
-                    y = 0
-                    for i in range(35):
+                    for y in range(20):
                         for i in range(-1 * self.mapX + 3):
-                            self.Map[y].insert(0, "")
-                        y += 1
+                            self.Map[y].insert(0, 9)
+    
 
-                    y = 0
-                    for i in range(35):
+                    for y in range(20):
                         for i in range(-1 * self.mapX + 3):
-                            del self.Map[y][33]
-                        y += 1
+                            del self.Map[y][18]
+    
                     self.mapX = -1 * self.mapX + 3
 
                 if self.mapY - 1 > 0:
                     for i in range(-1 * self.mapY + 1):
-                        self.Map.insert(0, ["" for i in range(35)])
+                        self.Map.insert(0, [9 for i in range(20)])
 
                     for i in range(-1 * self.mapY + 1):
-                        del self.Map[35]
+                        del self.Map[20]
                     self.mapY = -1 * self.mapY + 1
 
                 print("Lookの左のデータで更新中...")
