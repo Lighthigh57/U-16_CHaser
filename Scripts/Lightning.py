@@ -18,8 +18,11 @@ side = 0
 map = None
 """Map on firld"""
 
-CHECK_ZONE = 15
+Check_Zone = 0
 """Interval of Map_Check"""
+
+Safety_Heart = 0
+"""ModeChange border"""
 
 def main():
     global run
@@ -28,14 +31,19 @@ def main():
     turn = 0
     last = 0
     while True:
-        priority = [0]*9
-        last = Checker(last, run.get_ready(), turn)
+        if turn>0 and turn % Check_Zone == 0:
+            map_Check(run.get_map())
+        else:
+            priority = [0]*9
+            last = Checker(last, run.get_ready(), turn)
         turn += 1
 
 def map_Check(map):
     """マップを調べて取り残さない"""
-    pass
+    
+    
 
+    
 def solve_diagonal(target, com):
     """斜めに物が見えた時の処理"""
     global priority
@@ -54,14 +62,13 @@ def solve_diagonal(target, com):
         priority[x] += 1
         priority[y] += 1
 
-
 def Checker(last, ready_Value, turn) -> int:
     """
     敵いたら潰します(笑)
     """
     global run
     global priority
-    if turn>0 and turn % CHECK_ZONE:
+    if turn>0 and turn % Check_Zone:
         map_Check(run.get_map())
     else:
         pass
@@ -113,14 +120,8 @@ def Checker(last, ready_Value, turn) -> int:
         run.move("walk", goto)
     return goto
 
-
 if __name__ == "__main__":
-    while(True):
-        side = int(input("please tell me hot or cool... (cool->0 / hot->1) :"))
-        if side == 0 or side == 1:
-            break
-        else:
-            print("you have to enter 0 or 1!")
-
+    Safety_Heart = int(input("警戒モードに移行するアイテム数を半角で入れてください : "))
+    Check_Zone = int(input("未探索エリア確認する間隔（ターン数）を半角でいれてください : "))
     run = Command.Command()  # Set Command instance
     main()
