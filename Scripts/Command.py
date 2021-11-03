@@ -25,7 +25,7 @@ class Command():
         global run
         global ready_OK
 
-        result = [0]*9
+        result = [0 for i in range(9)]
 
         if ready_OK == False: #if didn't get_ready()
             self.get_ready()
