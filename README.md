@@ -1,5 +1,7 @@
 # U-16_CHaser
 U-16ファイル保存用です。頑張るぞー。
+リポジトリは移行しました。
+https://github.com/Lighthigh57/U-16CHaser2022
 
 # アクション時のルール
 get_ready() → 行動関数 → get_ready() → ... の順で必ず処理を行う。  
